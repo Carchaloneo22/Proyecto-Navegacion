@@ -1,0 +1,25 @@
+@startuml
+actor Usuario
+participant "Frontend" as FE
+participant "API PHP" as API
+participant "Controlador" as Ctrl
+participant "Estrategia" as Strat
+participant "Mapa" as Map
+database "PostgreSQL" as DB
+
+Usuario -> FE: Selecciona origen/destino y calcula
+FE -> API: GET /index.php?action=ruta
+API -> Ctrl: calcularRuta(origen, destino, estrategia)
+Ctrl -> Map: getAdyacencia()
+Map -> DB: SELECT * FROM aristas
+DB --> Map: datos
+Map --> Ctrl: adyacencia
+Ctrl -> Strat: calcularRuta(mapa, origen, destino, criterio)
+Strat -> Map: obtenerVecinos(nodo)
+Map --> Strat: vecinos
+Strat --> Ctrl: ruta calculada
+Ctrl --> API: JSON con ruta
+API --> FE: respuesta JSON
+FE -> FE: dibujar ruta en mapa
+FE --> Usuario: muestra resultado
+@enduml

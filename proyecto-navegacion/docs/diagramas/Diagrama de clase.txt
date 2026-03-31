@@ -1,0 +1,51 @@
+@startuml
+class Mapa {
+    - conn: PDO
+    - nodos: Nodo[]
+    - adyacencia: array
+    + __construct()
+    + getNodos(): Nodo[]
+    + getNodo(id): Nodo
+    + obtenerVecinos(id): array
+}
+
+class Nodo {
+    + id: int
+    + nombre: string
+    + lat: float
+    + lng: float
+}
+
+class Arista {
+    + origen_id: int
+    + destino_id: int
+    + distancia: float
+    + tiempo: int
+}
+
+interface EstrategiaRuta {
+    + calcularRuta(Mapa, origen, destino, criterio): array
+}
+
+class Dijkstra {
+    + calcularRuta(): array
+}
+
+class AStar {
+    - heuristica(): float
+    + calcularRuta(): array
+}
+
+class NavegacionController {
+    - mapa: Mapa
+    + getNodos(): array
+    + calcularRuta(): array
+}
+
+Mapa --> Nodo
+Mapa --> Arista
+NavegacionController --> Mapa
+NavegacionController --> EstrategiaRuta
+Dijkstra ..|> EstrategiaRuta
+AStar ..|> EstrategiaRuta
+@enduml

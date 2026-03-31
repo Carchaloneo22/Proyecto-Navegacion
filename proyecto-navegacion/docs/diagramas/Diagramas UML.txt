@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+actor Usuario as U
+rectangle "Sistema de Navegación" {
+    component "Frontend (HTML/JS)" as FE
+    component "API PHP" as API
+    component "Controlador Navegación" as Ctrl
+    component "Estrategias (Dijkstra/A*)" as Strat
+    database "PostgreSQL" as DB
+}
+U --> FE : Interactúa
+FE --> API : HTTP (JSON)
+API --> Ctrl : Llama
+Ctrl --> Strat : Usa
+Ctrl --> DB : Consulta nodos/aristas
+@enduml

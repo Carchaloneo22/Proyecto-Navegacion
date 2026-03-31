@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizador de Rutas - Navegación Inteligente</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚚 Optimizador de Rutas para Reparto</h1>
+            <p>Selecciona origen, destino y estrategia de navegación</p>
+        </header>
+        <div class="controls">
+            <div class="control-group">
+                <label for="origen">Origen:</label>
+                <select id="origen"></select>
+            </div>
+            <div class="control-group">
+                <label for="destino">Destino:</label>
+                <select id="destino"></select>
+            </div>
+            <div class="control-group">
+                <label for="estrategia">Estrategia:</label>
+                <select id="estrategia">
+                    <option value="dijkstra">Dijkstra</option>
+                    <option value="astar">A* (heurística)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="criterio">Criterio:</label>
+                <select id="criterio">
+                    <option value="distancia">Distancia (m)</option>
+                    <option value="tiempo">Tiempo (s)</option>
+                </select>
+            </div>
+            <button id="calcularBtn">Calcular Ruta</button>
+        </div>
+        <div id="map"></div>
+        <div id="resultados">
+            <h3>Resultados de la ruta</h3>
+            <p id="infoRuta"></p>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>

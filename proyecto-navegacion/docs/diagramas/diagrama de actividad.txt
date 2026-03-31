@@ -1,0 +1,20 @@
+@startuml
+start
+:Usuario selecciona origen y destino;
+:Selecciona estrategia (Dijkstra/A*) y criterio;
+:Presiona "Calcular Ruta";
+:Frontend envía petición AJAX;
+:API recibe parámetros;
+:Controlador instancia estrategia;
+:Mapa carga datos desde BD;
+:Algoritmo calcula ruta óptima;
+if (¿Ruta encontrada?) then (sí)
+  :Devolver JSON con ruta y métricas;
+  :Frontend dibuja ruta en mapa;
+  :Muestra distancia y tiempo;
+else (no)
+  :Devolver error;
+  :Mostrar mensaje al usuario;
+endif
+stop
+@enduml
